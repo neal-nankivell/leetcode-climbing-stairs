@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Answer
 {
@@ -15,7 +17,27 @@ namespace Answer
     {
         public int ClimbStairs(int n)
         {
-            throw new NotImplementedException();
+            Dictionary<int, int> stairsMap = new Dictionary<int, int>();
+
+            foreach (var step in Enumerable.Range(1, n))
+            {
+                if (step == 1)
+                {
+                    stairsMap[step] = 1;
+                }
+                else if (step == 2)
+                {
+                    stairsMap[step] = 2;
+                }
+                else
+                {
+                    stairsMap[step] =
+                        stairsMap[step - 1] +
+                        stairsMap[step - 2];
+                }
+            }
+
+            return stairsMap[n];
         }
     }
 }
