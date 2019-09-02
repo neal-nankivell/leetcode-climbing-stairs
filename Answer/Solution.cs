@@ -17,27 +17,21 @@ namespace Answer
     {
         public int ClimbStairs(int n)
         {
-            Dictionary<int, int> stairsMap = new Dictionary<int, int>();
-
-            foreach (var step in Enumerable.Range(1, n))
+            if (n == 1)
             {
-                if (step == 1)
-                {
-                    stairsMap[step] = 1;
-                }
-                else if (step == 2)
-                {
-                    stairsMap[step] = 2;
-                }
-                else
-                {
-                    stairsMap[step] =
-                        stairsMap[step - 1] +
-                        stairsMap[step - 2];
-                }
+                return 1;
+            }
+            int first = 1;
+            int second = 2;
+
+            for (int i = 3; i <= n; i++)
+            {
+                int current = first + second;
+                first = second;
+                second = current;
             }
 
-            return stairsMap[n];
+            return second;
         }
     }
 }
